@@ -13,9 +13,13 @@ class LangfuseManager
     )
     {}
 
-    public function withTrace(string $name, array $metadata, callable $callback): mixed
+    /**
+     * @param array<string, mixed> $metadata
+     * @param list<string>         $tags     Langfuse trace tags (filterable in the UI)
+     */
+    public function withTrace(string $name, array $metadata, callable $callback, array $tags = []): mixed
     {
-        $this->langfuseClient->startTrace($name, $metadata);
+        $this->langfuseClient->startTrace($name, $metadata, $tags);
         $result = $callback();
         $this->langfuseClient->endTrace();
 

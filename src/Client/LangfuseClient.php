@@ -42,7 +42,11 @@ class LangfuseClient
         );
     }
 
-    public function startTrace(string $name, array $metadata)
+    /**
+     * @param array<string, mixed> $metadata
+     * @param list<string>         $tags     Langfuse trace tags (filterable in the UI)
+     */
+    public function startTrace(string $name, array $metadata, array $tags = [])
     {
         $id = Uuid::uuid4()->toString();
         $timestamp = (new \DateTime())->format(DateTimeInterface::ATOM);
@@ -55,6 +59,7 @@ class LangfuseClient
                 'timestamp' => $timestamp,
                 'userId' => $metadata['userId'] ?? null,
                 'metadata' => $metadata,
+                'tags' => array_values($tags),
                 'public' => false,
             ]
         );

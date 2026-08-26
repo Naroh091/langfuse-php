@@ -63,7 +63,8 @@ $this->langfuseManager->withTrace(
     ['operation' => 'example operation name'],
     function () {
         // Your code here
-    }
+    },
+    ['my-tag'], // optional trace tags
 );
 ```
 
