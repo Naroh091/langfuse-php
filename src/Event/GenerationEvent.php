@@ -26,9 +26,9 @@ class GenerationEvent extends IngestionEvent
 
     public static function create(
         string $traceId,
-        string $name = null,
+        ?string $name = null,
         array $input = [],
-        string $model = null
+        ?string $model = null
     ): GenerationEvent
     {
         $id = Uuid::uuid4()->toString();
